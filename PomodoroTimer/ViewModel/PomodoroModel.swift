@@ -90,7 +90,6 @@ class PomodoroModel: NSObject, ObservableObject, UNUserNotificationCenterDelegat
 
         if hour == 0 && seconds == 0 && minutes == 0 {
             isStarted = false
-            print("Finished")
             isFinished = true
         }
     }

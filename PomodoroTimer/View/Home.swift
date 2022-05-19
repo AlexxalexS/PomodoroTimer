@@ -29,7 +29,7 @@ struct Home: View {
 
                         // MARK: Shadow
                         Circle()
-                            .stroke(Color("Purple"), lineWidth: 5)
+                            .stroke(primaryColor(), lineWidth: 5)
                             .blur(radius: 20)
                             .padding(-2)
 
@@ -38,14 +38,14 @@ struct Home: View {
 
                         Circle()
                             .trim(from: 0, to: pomodoroModel.progress)
-                            .stroke(Color("Purple").opacity(0.7), lineWidth: 10)
+                            .stroke(primaryColor().opacity(0.7), lineWidth: 10)
 
                         // MARK: Knob
                         GeometryReader { proxy in
                             let size = proxy.size
 
                             Circle()
-                                .fill(Color("Purple"))
+                                .fill(primaryColor())
                                 .frame(width: 30, height: 30)
                                 .overlay(content: {
                                     Circle()
@@ -222,6 +222,14 @@ struct Home: View {
             Button("\(value) \(hint)") {
                 onClick(value)
             }
+        }
+    }
+
+    private func primaryColor() -> Color {
+        if pomodoroModel.totalSeconds == 0 {
+            return Color("Purple")
+        } else {
+            return Color(pomodoroModel.totalSeconds > 5 ? "Purple" : "Red")
         }
     }
 
